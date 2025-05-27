@@ -229,25 +229,13 @@ const categories = ['프로젝트', '라이브러리', '인프라'] as const;
 
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedTech, setSelectedTech] = useState<string | null>(null);
 
-  // 모든 프로젝트에서 사용된 기술 스택을 추출하고 중복 제거
-  const allTechnologies = useMemo(() => {
-    const techSet = new Set<string>();
-    projectsData.forEach(project => {
-      project.technologies.forEach(tech => techSet.add(tech));
-    });
-    return Array.from(techSet).sort();
-  }, []);
-
-  // 선택된 범주와 기술에 따라 프로젝트 필터링
+  // 선택된 범주에 따라 프로젝트 필터링
   const filteredProjects = useMemo(() => {
     return projectsData.filter(project => {
-      const matchesCategory = !selectedCategory || project.category === selectedCategory;
-      const matchesTech = !selectedTech || project.technologies.includes(selectedTech);
-      return matchesCategory && matchesTech;
+      return !selectedCategory || project.category === selectedCategory;
     });
-  }, [selectedCategory, selectedTech]);
+  }, [selectedCategory]);
 
   return (
     <section id="projects" className="py-16">
@@ -285,36 +273,6 @@ const Projects: React.FC = () => {
                 }`}
               >
                 {category}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* 기술 스택 필터 */}
-        <div>
-          <h3 className="text-lg font-medium text-gray-900 mb-3 text-center">Technologies</h3>
-          <div className="flex flex-wrap gap-2 justify-center">
-            <button
-              onClick={() => setSelectedTech(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                !selectedTech 
-                  ? 'bg-teal-600 text-white' 
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              All Technologies
-            </button>
-            {allTechnologies.map(tech => (
-              <button
-                key={tech}
-                onClick={() => setSelectedTech(tech)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  selectedTech === tech 
-                    ? 'bg-teal-600 text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {tech}
               </button>
             ))}
           </div>
