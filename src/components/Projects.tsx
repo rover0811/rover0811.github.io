@@ -200,6 +200,28 @@ const projectsData: ProjectProps[] = [
       "배포 과정 완전 자동화"
     ],
     technologies: ["Python", "Click", "Poetry", "YAML", "UiPath", "Nexus", "CI/CD"]
+  },
+  {
+    title: "Nexus 기반 Private PyPI 서버 구축 및 패키지 배포 프로세스 표준화",
+    category: "인프라",
+    problem: "GitLab 직접 배포로 인한 버전 관리 부재, git clone 기반 배포로 인한 의존성 충돌 및 환경 불일치, 프로젝트 내부 라이브러리 중복 관리로 인한 코드베이스 비대화 문제를 해결",
+    features: [
+      "Private PyPI 서버: Nexus Repository Manager 기반 내부 패키지 저장소 구축",
+      "패키지 배포 자동화: Poetry + Nexus 연동으로 패키지 빌드/업로드 원클릭 처리",
+      "버전 관리 표준화: Semantic Versioning 기반 의존성 관리 체계 확립"
+    ],
+    highlights: [
+      "Nexus Repository 서버 구축: Private PyPI 저장소로 내부 패키지 중앙 집중 관리",
+      "Poetry 의존성 관리: pyproject.toml 기반 패키지 메타데이터 및 의존성 정의 표준화",
+      "배포 파이프라인 자동화: 패키지 빌드 → Nexus 업로드 → 버전 태깅까지 원클릭 처리",
+      "환경 분리: 개발/스테이징/프로덕션 환경별 패키지 저장소 격리 운영"
+    ],
+    impact: [
+      "배포 안정성 100% 향상: 버전 충돌 및 의존성 이슈 완전 해결",
+      "패키지 배포 시간 단축: 수동 git clone → 자동화된 패키지 설치",
+      "코드베이스 크기 감소: 중복 라이브러리 제거로 프로젝트 구조 최적화"
+    ],
+    technologies: ["Nexus Repository", "Poetry", "Python", "PyPI", "GitLab CI/CD", "Docker"]
   }
 ];
 
