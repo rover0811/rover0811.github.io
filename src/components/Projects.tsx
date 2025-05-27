@@ -19,7 +19,7 @@ const projectsData: ProjectProps[] = [
       "생산성 800% 향상: 연간 프로젝트 처리량 3개 → 26개",
       "반복 업무 5,000시간 자동화 달성"
     ],
-    technologies: ["Python", "Apache Airflow", "Redis", "Celery", "Grafana", "Prometheus", "UiPath", "MITM Proxy"]
+    technologies: ["Python", "UiPath"]
   },
   {
     title: "WhisperLive 기반 실시간 음성 퀴즈 생성 시스템",
@@ -68,7 +68,7 @@ const projectsData: ProjectProps[] = [
       "융특 학생 전과 의사결정 지원을 위한 객관적 데이터 제공",
       "실시간 등수 업데이트로 경쟁력 파악 용이성 향상"
     ],
-    technologies: ["Python", "FastAPI", "Selenium", "BeautifulSoup", "MySQL", "SQLAlchemy", "WebDriver"],
+    technologies: ["Python", "FastAPI", "Selenium", "BeautifulSoup"],
     githubUrl: "https://github.com/ssuperpower-developer/OpenGrade"
   },
   {
@@ -115,7 +115,7 @@ const projectsData: ProjectProps[] = [
       "일일 API 호출 15,000+ 회 안정적 처리",
       "메뉴 수집 실패율 0.2% 미만 달성"
     ],
-    technologies: ["AWS Lambda", "EventBridge", "Step Functions", "OpenAI GPT-4", "aiohttp", "asyncio", "GitHub Actions"],
+    technologies: ["AWS Lambda", "EventBridge", "Step Functions", "OpenAI GPT-4", "Asyncio", "GitHub Actions"],
     githubUrl: "https://github.com/EAT-SSU/Food-Crawling"
   },
   {
@@ -137,7 +137,7 @@ const projectsData: ProjectProps[] = [
       "오류율 0% 달성",
       "야간 자동화로 업무 시간 확보"
     ],
-    technologies: ["Python", "Asyncio", "State Machine", "ERP Integration", "Transaction Management", "Connection Pooling"]
+    technologies: ["Python", "Asyncio"]
   },
   {
     title: "HR Document Verification System",
@@ -158,7 +158,7 @@ const projectsData: ProjectProps[] = [
       "첨부파일 누락률 8% → 0.1%",
       "내부 데이터 대조 정확도 95%+ 달성"
     ],
-    technologies: ["OCR", "Python", "HTTP API", "WebSocket", "Parallel Processing", "Document Parsing"]
+    technologies: ["Python", "Asyncio"]
   },
   {
     title: "HWPX Document Automation Library",
@@ -178,7 +178,7 @@ const projectsData: ProjectProps[] = [
       "수작업 오류율 99% 감소",
       "월 평균 1000+ 문서 자동 생성"
     ],
-    technologies: ["Python", "win32com", "XML", "HWPX", "Template Engine"]
+    technologies: ["Python", "win32com", "HWPX"]
   },
   {
     title: "RPA CLI Tool for Project Automation",
@@ -199,7 +199,7 @@ const projectsData: ProjectProps[] = [
       "개발팀 프로젝트 구조 표준화",
       "배포 과정 완전 자동화"
     ],
-    technologies: ["Python", "Click", "Poetry", "YAML", "UiPath", "Nexus", "CI/CD"]
+    technologies: ["Python", "UiPath", "Nexus", "CI/CD"]
   },
   {
     title: "Nexus 기반 Private PyPI 서버 구축 및 패키지 배포 프로세스 표준화",
@@ -221,7 +221,7 @@ const projectsData: ProjectProps[] = [
       "패키지 배포 시간 단축: 수동 git clone → 자동화된 패키지 설치",
       "코드베이스 크기 감소: 중복 라이브러리 제거로 프로젝트 구조 최적화"
     ],
-    technologies: ["Nexus Repository", "Poetry", "Python", "PyPI", "GitLab CI/CD", "Docker"]
+    technologies: ["Nexus", "PyPI"]
   }
 ];
 
