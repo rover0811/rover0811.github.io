@@ -2,6 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
+/* PDF 인쇄 스타일 */
+@media print {
+  /* 기본 페이지 설정 */
+  @page {
+    margin: 2cm;
+    size: A4;
+  }
+
+  /* 불필요한 요소 숨기기 */
+  nav, 
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  /* 프로젝트 카드 스타일 */
+  .project-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 2rem;
+    border: 1px solid #e5e7eb;
+    padding: 1.5rem;
+  }
+
+  /* 텍스트 색상 조정 */
+  body {
+    color: black !important;
+    background: white !important;
+  }
+
+  /* 링크 스타일 */
+  a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+
+  /* 기술 스택 태그 스타일 */
+  .tech-tag {
+    border: 1px solid #e5e7eb;
+    background: white !important;
+    color: black !important;
+  }
+
+  /* 섹션 여백 조정 */
+  section {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 전체 컨테이너 스타일 */
+  .container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
 @layer base {
   html {
     font-family: 'Inter', system-ui, sans-serif;

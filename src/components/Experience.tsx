@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, Briefcase, Shield, Users } from 'lucide-react';
+import { GraduationCap, Briefcase, Shield, Users, GitBranch } from 'lucide-react';
 
 const Experience: React.FC = () => {
   return (
@@ -20,6 +20,18 @@ const Experience: React.FC = () => {
             </div>
           </div>
 
+          {/* 군대 */}
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Shield className="w-6 h-6 text-teal-600" />
+              <h3 className="text-xl font-semibold text-gray-900">공군 지능정보체계관리단</h3>
+            </div>
+            <div className="ml-9">
+              <p className="text-gray-700">RPA개발병</p>
+              <p className="text-gray-500">2023.03 - 2025.02 (21개월)</p>
+            </div>
+          </div>
+
           {/* 직장 */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -32,18 +44,6 @@ const Experience: React.FC = () => {
             </div>
           </div>
 
-          {/* 군대 */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <div className="flex items-center gap-3 mb-4">
-              <Shield className="w-6 h-6 text-teal-600" />
-              <h3 className="text-xl font-semibold text-gray-900">공군 지능정보체계관리단</h3>
-            </div>
-            <div className="ml-9">
-              <p className="text-gray-700">RPA개발병</p>
-              <p className="text-gray-500">2022.03 - 2023.12 (21개월)</p>
-            </div>
-          </div>
-
           {/* 커뮤니티 활동 */}
           <div className="bg-white rounded-lg shadow-md p-6">
             <div className="flex items-center gap-3 mb-4">
@@ -53,12 +53,12 @@ const Experience: React.FC = () => {
             <div className="ml-9 space-y-4">
               <div className="flex items-center gap-2">
                 <a 
-                  href="https://gdsc.community.dev/soongsil-university/" 
+                  href="https://sites.google.com/view/gdscsoongsil" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-teal-600 hover:text-teal-700 transition-colors"
                 >
-                  GDSC Soongsil 2nd
+                  GDSC Soongsil 2nd, GDSC Soongsil 5th core member
                 </a>
               </div>
               <div className="flex items-center gap-2">
@@ -70,7 +70,7 @@ const Experience: React.FC = () => {
                 >
                   SSUPERPOWER
                 </a>
-                <span className="text-gray-600">리드</span>
+                <span className="text-gray-600">Lead</span>
               </div>
               <div className="flex items-center gap-2">
                 <a 
@@ -82,6 +82,44 @@ const Experience: React.FC = () => {
                   PyThing
                 </a>
                 <span className="text-gray-600">운영진</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 오픈소스 기여 */}
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <GitBranch className="w-6 h-6 text-teal-600" />
+              <h3 className="text-xl font-semibold text-gray-900">오픈소스 기여</h3>
+            </div>
+            <div className="ml-9 space-y-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <a 
+                    href="https://github.com/collabora/WhisperLive/pull/373" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-teal-600 hover:text-teal-700 transition-colors font-medium"
+                  >
+                    WhisperLive
+                  </a>
+                  <span className="text-gray-600">- 실시간 음성 인식 서비스</span>
+                </div>
+                <p className="text-gray-700 text-sm">보안 WebSocket(WSS) 연결 지원 기능 추가 (#373 PR 머지됨)</p>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <a 
+                    href="https://github.com/openstack/barbican" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-teal-600 hover:text-teal-700 transition-colors font-medium"
+                  >
+                    OpenStack Barbican
+                  </a>
+                  <span className="text-gray-600">- 클라우드 키 관리 서비스</span>
+                </div>
+                <p className="text-gray-700 text-sm">OSSCA 2025 참여 - 보안 기능 개선 및 버그 수정 기여 진행중</p>
               </div>
             </div>
           </div>
