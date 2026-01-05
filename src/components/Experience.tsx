@@ -36,6 +36,17 @@ const Experience: React.FC = () => {
           <div className="bg-white rounded-lg shadow-md p-6">
             <div className="flex items-center gap-3 mb-4">
               <Briefcase className="w-6 h-6 text-teal-600" />
+              <h3 className="text-xl font-semibold text-gray-900">뤼튼테크놀로지스</h3>
+            </div>
+            <div className="ml-9">
+              <p className="text-gray-700">Data Engineer Intern</p>
+              <p className="text-gray-500">2025.08 - 2026.02 (6개월)</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Briefcase className="w-6 h-6 text-teal-600" />
               <h3 className="text-xl font-semibold text-gray-900">(주)밸리언트데이터</h3>
             </div>
             <div className="ml-9">
@@ -72,17 +83,6 @@ const Experience: React.FC = () => {
                 </a>
                 <span className="text-gray-600">Lead</span>
               </div>
-              <div className="flex items-center gap-2">
-                <a 
-                  href="https://pything.vercel.app/posts" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-teal-600 hover:text-teal-700 transition-colors"
-                >
-                  PyThing
-                </a>
-                <span className="text-gray-600">운영진</span>
-              </div>
             </div>
           </div>
 
@@ -106,20 +106,6 @@ const Experience: React.FC = () => {
                   <span className="text-gray-600">- 실시간 음성 인식 서비스</span>
                 </div>
                 <p className="text-gray-700 text-sm">보안 WebSocket(WSS) 연결 지원 기능 추가 (#373 PR 머지됨)</p>
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <a 
-                    href="https://github.com/openstack/barbican" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-teal-600 hover:text-teal-700 transition-colors font-medium"
-                  >
-                    OpenStack Barbican
-                  </a>
-                  <span className="text-gray-600">- 클라우드 키 관리 서비스</span>
-                </div>
-                <p className="text-gray-700 text-sm">OSSCA 2025 참여 - 보안 기능 개선 및 버그 수정 기여 진행중</p>
               </div>
             </div>
           </div>
