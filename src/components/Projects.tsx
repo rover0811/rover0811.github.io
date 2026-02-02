@@ -53,7 +53,7 @@ const projectsData: ProjectProps[] = [
     features: [
       "BFS Crawler: 2,978작품을 시작점으로 LinkType 분류 기반 hop 전략으로 문서 관계 그래프 탐색, append-only BigQuery 적재 + S3 HTML 아카이빙",
       "LLM Evaluator: edge별 is_essential + selection_reason 판정, 작품 문서와 도메인 문서에 서로 다른 평가 기준을 적용하는 프롬프트 이원화",
-      "dbt + Airflow 파이프라인: SCD Type 2 평가 이력 관리, staging→silver→gold 변환, 6단계 DAG 자동화"
+      "dbt + Airflow 파이프라인: SCD Type 2 평가 이력 관리, staging→silver→gold 변환, idempotent 재실행 및 backfill 지원"
     ],
     highlights: [
       "Bronze/Silver 역할 분리 의사결정: EXTERNAL 링크도 작품 이해에 필수일 수 있으므로 Bronze에서는 모든 edge를 보존하고, 필터링은 Silver LLM 평가에 위임. CHILD는 hop 유지하며 큐 추가, SIBLING·EXTERNAL은 hop 소진 후 기록만. 크롤링 범위는 휴리스틱으로, 필수성 판단은 LLM으로 분리하여 레이어별 책임을 명확히 구분",
@@ -62,7 +62,7 @@ const projectsData: ProjectProps[] = [
     ],
     impact: [
       "2,978개 작품 대상 문서 지식그래프 자동 구축 및 LLM 큐레이션",
-      "6단계 Airflow DAG 완전 자동화",
+      "크롤링·평가·변환 전 과정 Airflow 오케스트레이션으로 수동 개입 제거",
       "SCD Type 2 이력 관리 + outgoing_hash 변경 감지로 불필요 LLM 재평가 제거"
     ],
     technologies: ["Python", "Apache Airflow", "BigQuery", "dbt", "LLM", "S3", "BFS"]
