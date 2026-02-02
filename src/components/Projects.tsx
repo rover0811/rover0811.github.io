@@ -3,65 +3,69 @@ import ProjectCard, { ProjectProps } from './ProjectCard';
 
 const projectsData: ProjectProps[] = [
   {
-    title: "Mail Agent - 뤼튼 서비스 출시",
+    title: "Gmail AI Agent - 메일 브리핑 자동 생성 에이전트 파이프라인",
     category: "뤼튼",
-    problem: "복잡한 메일 본문의 맥락을 유지하며 실시간 요약 및 자동 분류가 필요한 상황에서, Multi-Agent 기반의 지능형 메일 처리 시스템 개발",
+    problem: "사용자 Gmail 연결 → 메일 수집 → LLM 메타데이터 추출 → AI 브리핑 생성까지의 전체 에이전트 파이프라인을 설계·구축. Kafka pub/sub 기반 BE-AI 서버 간 비동기 통신과 Locust 부하테스트를 통한 성능 검증까지 담당",
     features: [
-      "Langgraph를 활용한 Multi-Agent 워크플로우 설계",
-      "복잡한 메일 본문의 맥락 유지 실시간 요약",
-      "자동 분류 시스템 구현"
+      "Day 0 온보딩 파이프라인: Gmail 커넥터 → 최근 20건 수집 → LLM 전처리 → 브리핑 생성, 이후 15분 주기 history.list 기반 증분 수집",
+      "LangGraph 기반 브리핑 생성 Agent: 메일 조회 → LLM 요약 → 브리핑 포맷팅 멀티스텝 워크플로우를 상태 그래프로 구성",
+      "Kafka pub/sub 비동기 아키텍처: MetadataPipeline·BriefingPipeline 분리, BE-AI 서버 간 브리핑 결과를 Kafka topic으로 전달하여 결합도 최소화",
+      "ElasticSearch 다국어 검색 스키마: nori·kuromoji·english 분석기 적용, thread_id/topic_id/received_at 기반 메일 메타데이터 구조화"
     ],
     highlights: [
-      "Locust를 활용한 시나리오 기반 부하 테스트 수행",
-      "평균 30초 고지연 LLM 추론 플로우를 60 RPS 환경에서 P95 40초 이내로 방어",
-      "시스템 안정성 입증 및 뤼튼 내 서비스 출시"
+      "Gmail API quota 의사결정: naive 방식 messages.list + get x20 = 105 units/user로 1.1만 유저가 한계였으나, history.list 기반 증분 수집으로 전환하여 2.2 units/user 달성. 98% 절감으로 54만 유저 동시 지원 설계. 멱등성과 유저별 상태 추적 측면에서도 history.list가 유리하다고 판단",
+      "Locust 부하테스트로 병목 특정: 13명 실사용자 x 10회 반복, 유저별 P50/P95/P99 개별 측정. 에러 group-by 분석으로 TopicDecider 프롬프트의 라벨 key 오류가 P95 병목임을 특정 → 수정 후 P95 84s→47s로 정상화",
+      "Worker/Partition 최적화: UvicornWorker 환경에서 스레드 수가 아닌 워커 수 기반으로 Kafka 컨슈머가 동작함을 파악. 워커 수와 파티션 수를 정렬하여 SIGKILL 및 메시지 유실 해결"
     ],
     impact: [
-      "뤼튼 내 정식 서비스로 출시",
-      "60 RPS 환경에서 P95 40초 이내 응답 달성"
+      "온보딩 P50 29s / P95 47s 달성",
+      "Gmail 에러 5종 + LLM 에러 5종에 대해 타입별 retry 횟수 차등 설정",
+      "D+1/3/7/15 주기적 브리핑 생성 스케줄 및 Kafka topic 기반 알림 체계 구축"
     ],
-    technologies: ["Langgraph", "Multi-Agent", "Locust", "Python", "LLM"]
+    technologies: ["Python", "LangGraph", "Kafka", "Gmail API", "LLM", "Locust", "ElasticSearch"]
   },
   {
-    title: "AI 기반 검색 기능 ETL 파이프라인",
+    title: "채용·주식 AI Agent Tool",
     category: "뤼튼",
-    problem: "채용, 주식, 웹소설 등 다양한 도메인의 데이터를 AI 기반 검색 기능에 최적화하여 제공하기 위한 ETL 파이프라인 및 LLM tool 개발",
+    problem: "뤼튼 AI 챗봇이 채용·주식 질문에 답변할 때 호출하는 검색 tool 개발. 사용자 질문 → LLM tool 선택 → ES 검색 → 결과 포맷팅 → LLM 답변 생성까지의 Agent tool use 파이프라인에서 데이터 수집 ETL부터 검색 품질 최적화까지 end-to-end 담당",
     features: [
-      "Apache Airflow ETL 파이프라인 설계 및 개발",
-      "채용, 주식, 웹소설 ETL 파이프라인 운용",
-      "ElasticSearch, BigQuery 데이터 적재"
+      "Tool Architecture: 사용자 질문 → LLM이 도메인별 tool 선택 → 쿼리 파라미터 추출 → ElasticSearch hybrid search → 결과 포맷팅 → LLM 최종 답변 생성",
+      "채용 ETL: 채용 플랫폼 API 수집 → 이미지 JD는 OCR+LLM 텍스트 추출 및 직무별 분리 매칭 → hash 기반 Set 연산으로 증분 처리 → BigQuery·ES 적재",
+      "주식 ETL: 증권 API 9종 + 애널리스트 리포트 PDF OCR → LLM 요약·투자포인트·리스크 추출 → Bronze/Silver/Gold Medallion Architecture → 1종목 1document BigQuery·ES 적재",
+      "Airflow DAG 오케스트레이션: 도메인별 수집·변환·적재 DAG 구성, Docker 기반 ECR 배포, Datadog 메트릭 연동"
     ],
     highlights: [
-      "ElasticSearch 쿼리 도메인별 튜닝으로 Recall@5 0.7에서 0.9로 개선",
-      "RRF, CC, Embedding 차원 및 벤더 등 다변량 수치 조절",
-      "LLM tool(채용, 주식) 개발"
+      "Recall 측정 및 개선 0.7→0.9: 도메인별 100개 질의-정답 쌍 평가셋을 직접 구축. ES 쿼리 파라미터를 변수로 grid search 실험 수행. 채용 도메인에서는 nori 분석기 + multi_match 필드별 가중치 조정이, 주식 도메인에서는 숫자형 필드 range 쿼리와 텍스트 semantic search의 하이브리드 비율 조정이 가장 큰 Recall 개선을 만듦",
+      "도메인별 쿼리 전략 분리 의사결정: 채용은 직무명·회사명 exact match + JD 본문 semantic search 조합이 유효, 주식은 종목코드 exact match + 재무지표 range filter + 리포트 본문 semantic search 필요. RRF vs Cross-encoder reranking 비교에서 채용은 RRF가, 주식은 CE가 유리함을 확인. 임베딩 벤더와 차원별 비용-성능 트레이드오프 실험 후 최종 조합 선택",
+      "A/B 테스트 설계 및 프로덕션 반영: dev/prod 동일 쿼리셋 실행 → DataFrame 구조로 수집 후 LLM 기반 답변 품질 자동 비교 스크립트 작성. Recall@5 + 답변 적합도를 정량 비교하여 파라미터 변경의 프로덕션 반영 여부를 데이터 기반으로 판단"
     ],
     impact: [
       "전체 뤼튼 tool call 답변의 25% 차지",
       "일평균 57,000번 tool call 호출 처리",
       "Recall@5 0.7 → 0.9 개선"
     ],
-    technologies: ["Apache Airflow", "ElasticSearch", "BigQuery", "Python", "LLM"]
+    technologies: ["Python", "Apache Airflow", "ElasticSearch", "BigQuery", "LLM", "OCR", "Docker", "AWS ECR"]
   },
   {
-    title: "Crack 웹소설 프로젝트",
+    title: "웹소설 Knowledge Graph 자동 구축 - LLM 문서 큐레이션 파이프라인",
     category: "뤼튼",
-    problem: "카카오페이지, 노벨피아 등 다양한 소설 플랫폼의 데이터를 통합하여 웹소설 생성 모델용 고품질 데이터셋 구축",
+    problem: "나무위키 2,978개 웹소설 작품의 관련 문서를 BFS로 탐색하고, LLM이 필수 문서를 자동 판정하여 웹소설 생성 모델용 knowledge base 구축. Medallion Architecture 설계부터 Airflow DAG 운영까지 전체 담당",
     features: [
-      "다양한 소설 플랫폼 데이터 표준화된 통합 스키마 설계",
-      "메달리온 단계별 LLM 정제 및 변환 파이프라인",
-      "나무위키 게시글 지식그래프 기반 데이터 ingestion"
+      "BFS Crawler: 2,978작품을 시작점으로 LinkType 분류 기반 hop 전략으로 문서 관계 그래프 탐색, append-only BigQuery 적재 + S3 HTML 아카이빙",
+      "LLM Evaluator: edge별 is_essential + selection_reason 판정, 작품 문서와 도메인 문서에 서로 다른 평가 기준을 적용하는 프롬프트 이원화",
+      "dbt + Airflow 파이프라인: SCD Type 2 평가 이력 관리, staging→silver→gold 변환, 6단계 DAG 자동화"
     ],
     highlights: [
-      "카카오페이지, 노벨피아 등 플랫폼 데이터 일관성 확보",
-      "Asyncio 기반 Producer/Consumer 패턴 공용 라이브러리 개발",
-      "Rate limit 걸면서 동시성 확보"
+      "Bronze/Silver 역할 분리 의사결정: EXTERNAL 링크도 작품 이해에 필수일 수 있으므로 Bronze에서는 모든 edge를 보존하고, 필터링은 Silver LLM 평가에 위임. CHILD는 hop 유지하며 큐 추가, SIBLING·EXTERNAL은 hop 소진 후 기록만. 크롤링 범위는 휴리스틱으로, 필수성 판단은 LLM으로 분리하여 레이어별 책임을 명확히 구분",
+      "LLM 평가 프롬프트 이원화: 작품 문서와 도메인 문서에서 '필수'의 정의가 근본적으로 다름을 파악. 작품 문서는 root 텍스트를 컨텍스트로 '작품 이해를 돕는가?', 도메인 문서는 선별된 문서 텍스트 기반으로 '도메인 이해를 돕는가?'를 각각 평가. is_essential + selection_reason 구조화 응답으로 평가 근거 추적과 프롬프트 개선 사이클 기반 마련",
+      "Incremental 재평가로 LLM 비용 최적화: initial BFS depth 3 결과를 incremental에서는 flat depth 1로 처리하여 re-BFS 없이 결과 동일성 보장. dbt snapshot으로 outgoing_hash 변경을 감지하고 변경된 edge만 LLM 재평가 대상으로 추출하여 불필요한 API 호출 제거"
     ],
     impact: [
-      "웹소설 생성 모델용 고품질 데이터셋 구축",
-      "데이터 일관성 확보 및 분석 효율성 제고"
+      "2,978개 작품 대상 문서 지식그래프 자동 구축 및 LLM 큐레이션",
+      "6단계 Airflow DAG 완전 자동화",
+      "SCD Type 2 이력 관리 + outgoing_hash 변경 감지로 불필요 LLM 재평가 제거"
     ],
-    technologies: ["Python", "Asyncio", "LLM", "Knowledge Graph", "ETL"]
+    technologies: ["Python", "Apache Airflow", "BigQuery", "dbt", "LLM", "S3", "BFS"]
   },
   {
     title: "Apache Airflow ETL Pipeline Infrastructure",
