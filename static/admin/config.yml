@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: rover0811/rover0811.github.io
+  branch: main
+  base_url: https://CHANGE-ME.workers.dev
+
+media_folder: static/images
+public_folder: /images
+
+collections:
+  - name: blog
+    label: 블로그 글
+    label_singular: 글
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: yaml-frontmatter
+    fields:
+      - { label: 제목, name: title, widget: string }
+      - {
+          label: 작성일,
+          name: date,
+          widget: datetime,
+          format: "YYYY-MM-DDTHH:mm:ssZ",
+          date_format: "YYYY-MM-DD",
+          time_format: "HH:mm",
+        }
+      - label: 작성자
+        name: authors
+        widget: list
+        default: [{ name: 김현수 }]
+        fields:
+          - { label: 이름, name: name, widget: string }
+      - {
+          label: 태그,
+          name: tags,
+          widget: list,
+          required: false,
+          default: [],
+        }
+      - {
+          label: 초안(비공개),
+          name: draft,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
+      - {
+          label: 검색 제외,
+          name: excludeSearch,
+          widget: boolean,
+          default: false,
+          required: false,
+        }
+      - { label: 본문, name: body, widget: markdown }
+
+  - name: pages
+    label: 페이지
+    files:
+      - name: about
+        label: About
+        file: content/about.md
+        fields:
+          - { label: 제목, name: title, widget: string }
+          - {
+              label: 목차 표시,
+              name: toc,
+              widget: boolean,
+              default: true,
+              required: false,
+            }
+          - { label: 본문, name: body, widget: markdown }
