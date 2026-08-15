@@ -1,0 +1,73 @@
+baseURL: "https://rover0811.github.io/"
+title: "Hyunsoo Kim"
+locale: "ko-kr"
+defaultContentLanguage: "ko"
+hasCJKLanguage: true
+theme: hextra
+
+enableRobotsTXT: true
+enableGitInfo: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+    extensions:
+      passthrough:
+        enable: true
+        delimiters:
+          block: [["\\[", "\\]"], ["$$", "$$"]]
+          inline: [["\\(", "\\)"], ["$", "$"]]
+  highlight:
+    noClasses: false
+
+menu:
+  main:
+    - name: 블로그
+      pageRef: /blog
+      weight: 1
+    - name: About
+      pageRef: /about
+      weight: 2
+    - name: 검색
+      weight: 3
+      params:
+        type: search
+    - name: GitHub
+      weight: 4
+      url: "https://github.com/rover0811"
+      params:
+        icon: github
+
+params:
+  description: "Data Engineer 김현수의 기술 블로그 — 데이터 파이프라인, 인프라, 그리고 배움의 기록."
+
+  navbar:
+    displayTitle: true
+    displayLogo: false
+
+  theme:
+    default: system
+    displayToggle: true
+
+  footer:
+    enable: true
+    displayCopyright: true
+    displayPoweredBy: true
+
+  blog:
+    list:
+      displayTags: true
+      pagerSize: 10
+    article:
+      displayPagination: true
+
+  editURL:
+    enable: false
+
+  page:
+    width: normal
+
+  comments:
+    enable: false
+    type: giscus
