@@ -46,7 +46,7 @@ hugo server
      name: github
      repo: rover0811/rover0811.github.io
      branch: main
-     base_url: https://sveltia-cms-auth.<서브도메인>.workers.dev
+     base_url: https://sveltia-cms-auth.rover0811.workers.dev
    ```
 
 > Worker 없이 당장 쓰려면: admin에서 **"액세스 토큰으로 로그인"** → 안내 링크로 PAT 생성해 붙여넣기.

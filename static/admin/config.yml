@@ -4,7 +4,7 @@ backend:
   name: github
   repo: rover0811/rover0811.github.io
   branch: main
-  base_url: https://CHANGE-ME.workers.dev
+  base_url: https://sveltia-cms-auth.rover0811.workers.dev
 
 media_folder: static/images
 public_folder: /images
