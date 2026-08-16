@@ -13,7 +13,7 @@ RUN curl -sSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSIO
 WORKDIR /src
 COPY . .
 RUN git submodule update --init --recursive || true
-RUN hugo --gc --minify --baseURL "${HUGO_BASEURL}"
+RUN hugo --gc --minify --enableGitInfo=false --baseURL "${HUGO_BASEURL}"
 
 FROM nginxinc/nginx-unprivileged:1.27-alpine
 COPY --from=builder /src/public /usr/share/nginx/html
