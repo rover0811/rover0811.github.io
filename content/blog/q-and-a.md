@@ -1,14 +1,14 @@
 ---
 title: Q과 A에 대한 과정
-date: 2026-08-16T01:39:00+09:00
+date: 2023-12-25T01:39:00+09:00
 authors:
   - name: 김현수
-categories:
-  - 회고
 tags:
   - 생각
 draft: false
 excludeSearch: false
+categories:
+  - 회고
 ---
 
 나의 삶의 과정은 Q과 A에 대한 과정이었다.
