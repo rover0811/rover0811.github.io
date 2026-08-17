@@ -1,0 +1,24 @@
+{{- $currentURL := .RelPermalink -}}
+<aside class="hextra-sidebar-container hx:flex hx:flex-col hx:print:hidden hx:md:top-[var(--hextra-navbar-height)] hx:md:shrink-0 hx:md:w-64 hx:md:self-start hx:max-md:hidden">
+  <div class="hx:overflow-y-auto hx:overflow-x-hidden hx:p-4 hx:grow hx:md:h-[calc(100vh-var(--hextra-navbar-height))]">
+    <p class="hx:mb-3 hx:px-2 hx:text-sm hx:font-semibold hx:text-gray-500 hx:dark:text-gray-400">카테고리</p>
+    <ul class="hx:flex hx:flex-col hx:gap-1">
+      {{- $blogURL := "/blog/" | relLangURL -}}
+      <li>
+        <a href="{{ $blogURL }}" class="hx:flex hx:justify-between hx:rounded hx:px-3 hx:py-1.5 hx:text-sm {{ if eq $currentURL $blogURL }}hx:font-semibold hx:bg-gray-100 hx:dark:bg-neutral-800{{ else }}hx:text-gray-600 hx:dark:text-gray-300{{ end }}">
+          <span>전체</span>
+          <span class="hx:opacity-60">{{ len (where site.RegularPages "Section" "blog") }}</span>
+        </a>
+      </li>
+      {{- range $name, $items := site.Taxonomies.categories -}}
+        {{- $termURL := printf "/categories/%s/" ($name | urlize) | relLangURL -}}
+        <li>
+          <a href="{{ $termURL }}" class="hx:flex hx:justify-between hx:rounded hx:px-3 hx:py-1.5 hx:text-sm {{ if eq $currentURL $termURL }}hx:font-semibold hx:bg-gray-100 hx:dark:bg-neutral-800{{ else }}hx:text-gray-600 hx:dark:text-gray-300{{ end }}">
+            <span>{{ $name }}</span>
+            <span class="hx:opacity-60">{{ len $items }}</span>
+          </a>
+        </li>
+      {{- end -}}
+    </ul>
+  </div>
+</aside>
