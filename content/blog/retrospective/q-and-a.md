@@ -3,7 +3,9 @@ title: Q과 A에 대한 과정
 date: 2026-08-16T01:39:00+09:00
 authors:
   - name: 김현수
-tags: []
+tags:
+  - 회고
+  - 생각
 draft: false
 excludeSearch: false
 ---
