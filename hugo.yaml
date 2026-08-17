@@ -25,6 +25,17 @@ markup:
         delimiters:
           block: [["\\[", "\\]"], ["$$", "$$"]]
           inline: [["\\(", "\\)"], ["$", "$"]]
+      extras:
+        delete:
+          enable: false
+        insert:
+          enable: false
+        mark:
+          enable: true
+        subscript:
+          enable: false
+        superscript:
+          enable: false
   highlight:
     noClasses: false
 
