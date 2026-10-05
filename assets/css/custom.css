@@ -1,5 +1,13 @@
+@font-face {
+  font-family: "JoseonShinmyeongjo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --site-font: "Lora", "Pretendard Variable", Pretendard, "Noto Sans KR", serif;
+  --site-font: "Times New Roman", Times, "JoseonShinmyeongjo", serif;
   --site-content-width: 49.0625rem;
   --site-nav-height: 3.5625rem;
   --site-page-gutter: 1.5rem;
