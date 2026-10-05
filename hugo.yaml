@@ -47,11 +47,14 @@ menu:
     - name: Reading
       pageRef: /reading
       weight: 2
-    - name: GitHub
+    - name: Talks
+      pageRef: /talks
       weight: 3
+    - name: GitHub
+      weight: 4
       url: "https://github.com/rover0811"
     - name: 검색
-      weight: 4
+      weight: 5
       params:
         type: search
         icon: search

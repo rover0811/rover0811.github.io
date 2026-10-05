@@ -1,0 +1,31 @@
+{{ define "main" }}
+  {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+  <main id="content" class="site-main site-blog-main">
+    <div class="site-content">
+      {{ with .Content }}<div class="site-blog-intro content">{{ . }}</div>{{ end }}
+      <ol class="site-blog-list">
+        {{- range sort (site.Data.talks | default slice) "session" "desc" }}
+          {{- $pdf := "" }}
+          {{- with .pdf }}{{ $pdf = printf "talks/%s" . | relURL }}{{ end }}
+          {{- $meta := slice }}
+          {{- with .venue }}{{ $meta = $meta | append . }}{{ end }}
+          {{- with .session }}{{ $meta = $meta | append (printf "%d회차" .) }}{{ end }}
+          {{- with .date }}{{ $meta = $meta | append ((time .).Format "Jan 2, 2006") }}{{ end }}
+          <li class="site-blog-entry">
+            <p class="site-blog-date">{{ delimit $meta " / " }}</p>
+            <h2 class="site-blog-title">
+              {{- if $pdf }}<a href="{{ $pdf }}" target="_blank" rel="noopener">{{ .title }}</a>{{ else }}{{ .title }}{{ end -}}
+            </h2>
+            {{- with .description }}<p class="site-blog-summary">{{ . }}</p>{{ end }}
+            {{- if or $pdf .post }}
+              <p class="site-talk-links">
+                {{- with $pdf }}<a href="{{ . }}" target="_blank" rel="noopener">슬라이드 PDF</a>{{ end -}}
+                {{- with .post }}<a href="{{ . | relURL }}">관련 글</a>{{ end -}}
+              </p>
+            {{- end }}
+          </li>
+        {{- end }}
+      </ol>
+    </div>
+  </main>
+{{ end }}

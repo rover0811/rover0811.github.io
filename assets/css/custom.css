@@ -266,6 +266,23 @@ a {
   filter: invert(0.92) hue-rotate(180deg);
 }
 
+.site-talk-links {
+  display: flex;
+  gap: var(--site-space-4);
+  margin: var(--site-space-1) 0 0;
+  font-size: 0.875rem;
+}
+
+.site-talk-links a {
+  color: var(--site-link);
+  text-decoration: none;
+}
+
+.site-talk-links a:hover {
+  color: var(--site-hover);
+  text-decoration: underline;
+}
+
 .site-footer {
   width: 100%;
   margin-top: auto;

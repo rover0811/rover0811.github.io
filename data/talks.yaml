@@ -1,0 +1,58 @@
+# session: 회차 번호. 목록은 회차가 큰 순서로 정렬된다.
+# pdf: static/talks/ 아래 파일 이름. 비워 두면 제목에 링크가 걸리지 않는다.
+# date, description, post(관련 블로그 글 경로)는 선택 항목이다.
+- session: 1
+  venue: "Pything"
+  title: "안드로이드는 전기양의 꿈을 꾸는가?: 딥러닝 기본 구조의 이해"
+  pdf: ""
+
+- session: 2
+  venue: "Pything"
+  title: "Python Import Deep Dive"
+  pdf: "pything-02.pdf"
+
+- session: 3
+  venue: "Pything"
+  title: "WTF Python: 파이썬의 숨겨진 함정들"
+  pdf: "pything-03.pdf"
+
+- session: 4
+  venue: "Pything"
+  title: "Django & DRF로 만드는 블로그 백엔드"
+  pdf: "pything-04.pdf"
+
+- session: 5
+  venue: "Pything"
+  title: "검색어 자동완성 시스템 설계"
+  pdf: "pything-05.pdf"
+
+- session: 6
+  venue: "Pything"
+  title: "현대 검색의 이해: Lexical, Semantic, Hybrid 접근법"
+  pdf: "pything-06.pdf"
+
+- session: 7
+  venue: "Pything"
+  title: "대용량 HTTP 요청 처리: 메모리 효율적인 Async Streaming 패턴"
+  pdf: "pything-07.pdf"
+
+- session: 8
+  venue: "Pything"
+  title: "Change Data Capture"
+  pdf: "pything-08.pdf"
+
+- session: 9
+  venue: "Pything"
+  title: "포트폴리오 제작기"
+  pdf: ""
+
+- session: 10
+  venue: "Pything"
+  title: "무엇을 측정할 것인가: Mail Agent로 들여다본 데이터 엔지니어링"
+  pdf: "pything-10.pdf"
+  post: "/blog/kafka-data-engineering/"
+
+- session: 11
+  venue: "Pything"
+  title: "분석계란 무엇인가?: Kimball Data Warehouse Toolkit"
+  pdf: "pything-11.pdf"
