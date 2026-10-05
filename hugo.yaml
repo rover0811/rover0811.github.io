@@ -44,8 +44,8 @@ menu:
     - name: Blog
       pageRef: /blog
       weight: 1
-    - name: About
-      pageRef: /about
+    - name: Reading
+      pageRef: /reading
       weight: 2
     - name: GitHub
       weight: 3

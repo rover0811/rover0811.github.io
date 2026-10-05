@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+  <main id="content" class="site-main site-blog-main">
+    <div class="site-content site-reading-content">
+      {{ with .Content }}<div class="site-blog-intro content">{{ . }}</div>{{ end }}
+      {{ with .Params.notionEmbed }}
+        <div class="site-reading-frame">
+          <iframe class="site-reading-embed" src="{{ . }}" title="Reading list" loading="lazy" allowfullscreen></iframe>
+        </div>
+      {{ end }}
+    </div>
+  </main>
+{{ end }}
