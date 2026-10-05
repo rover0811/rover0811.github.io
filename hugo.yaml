@@ -41,21 +41,20 @@ markup:
 
 menu:
   main:
-    - name: 블로그
+    - name: Blog
       pageRef: /blog
       weight: 1
     - name: About
       pageRef: /about
       weight: 2
-    - name: 검색
+    - name: GitHub
       weight: 3
+      url: "https://github.com/rover0811"
+    - name: 검색
+      weight: 4
       params:
         type: search
-    - name: GitHub
-      weight: 4
-      url: "https://github.com/rover0811"
-      params:
-        icon: github
+        icon: search
 
 params:
   description: "Data Engineer 김현수의 기술 블로그 — 데이터 파이프라인, 인프라, 그리고 배움의 기록."
@@ -70,8 +69,8 @@ params:
 
   footer:
     enable: true
-    displayCopyright: true
-    displayPoweredBy: true
+    displayCopyright: false
+    displayPoweredBy: false
 
   blog:
     list:
