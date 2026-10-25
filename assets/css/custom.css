@@ -9,6 +9,7 @@
 :root {
   --site-font: "Times New Roman", Times, "JoseonShinmyeongjo", serif;
   --site-content-width: 49.0625rem;
+  --site-wide-width: 68.75rem;
   --site-nav-height: 3.5625rem;
   --site-page-gutter: 1.5rem;
   --site-space-1: 0.25rem;
@@ -286,6 +287,64 @@ a {
 .site-talk-links a:hover {
   color: var(--site-hover);
   text-decoration: underline;
+}
+
+.site-signal-header {
+  margin-bottom: var(--site-space-6);
+}
+
+.site-signal-title {
+  margin: 0;
+  color: var(--site-text);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.site-signal-lede p {
+  margin: var(--site-space-3) 0 0;
+  color: var(--site-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.site-signal-figure {
+  width: min(calc(100% - (var(--site-page-gutter) * 2)), var(--site-wide-width));
+  margin: 0 auto;
+}
+
+.site-signal-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  border: 1px solid var(--site-border);
+  border-radius: 8px;
+}
+
+.site-signal-links {
+  margin-top: var(--site-space-3);
+}
+
+@media (max-width: 40rem) {
+  .site-signal-title {
+    font-size: 1.375rem;
+  }
+
+  .site-signal-figure {
+    width: 100%;
+  }
+
+  .site-signal-video {
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .site-signal-links {
+    padding: 0 var(--site-page-gutter);
+  }
 }
 
 .site-footer {

@@ -1,0 +1,24 @@
+{{ define "main" }}
+  {{ partial "sidebar.html" (dict "context" . "disableSidebar" true) }}
+  <main id="content" class="site-main site-blog-main">
+    <article class="site-signal">
+      <header class="site-content site-signal-header">
+        <h1 class="site-signal-title">{{ .Title }}</h1>
+        {{ with .Content }}<div class="site-signal-lede">{{ . }}</div>{{ end }}
+      </header>
+      {{ with .Params.video }}
+        <figure class="site-signal-figure">
+          <video class="site-signal-video" controls autoplay muted loop playsinline preload="metadata" width="1920" height="1080"
+            {{- with $.Params.poster }} poster="{{ . | relURL }}"{{ end }}>
+            <source src="{{ . | relURL }}" type="video/mp4">
+          </video>
+          {{ with $.Params.links }}
+            <figcaption class="site-talk-links site-signal-links">
+              {{- range . }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end -}}
+            </figcaption>
+          {{ end }}
+        </figure>
+      {{ end }}
+    </article>
+  </main>
+{{ end }}
